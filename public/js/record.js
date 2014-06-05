@@ -33,7 +33,7 @@ function toggleActivateRecordButton() {
 }
 
 function turnOnCamera() {
-  video = $('video');
+  video = $('video#webcam');
   $('#record-me').attr('disabled', false);
 
   video.controls = false;
