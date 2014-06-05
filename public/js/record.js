@@ -59,7 +59,7 @@ function turnOnCamera() {
     console.log(e);
     alert('Fine, you get a movie instead of your beautiful face ;)');
 
-    videoattr('src', '/capture.webm');
+    video.attr('src', '/capture.webm');
     finishVideoSetup_();
   });
 };
