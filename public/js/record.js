@@ -49,7 +49,7 @@ function turnOnCamera() {
       // awful 100ms+ as 640x480.
       canvas[0].width = 320;
       canvas[0].height = 240;
-    }, 1000);
+    }, 1);
   };
 
   navigator.getUserMedia({video: true, audio: true}, function(stream) {
