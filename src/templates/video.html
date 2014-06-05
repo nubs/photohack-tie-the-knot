@@ -1,21 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="row-fluid">
-  <div class="homemsg col-md-6">
-    <div id='videoContainer'>
-      <div id='overlay'></div>
-      <div>
-        <video autoplay muted></video>
-      </div>
-    </div>
+<div class="homemsg">
+  <video autoplay muted></video>
+  <div id="video-controls" class="btn-group">
+    <button type="button" id="record-me" class="btn btn-danger btn-lg" disabled><span class="glyphicon glyphicon-stop"></span> Record</button>
+    <button type="button" id="stop-me" class="btn btn-info btn-lg" disabled><span class="glyphicon glyphicon-stop"></span> Stop</button>
   </div>
-  <div class="homemsg col-md-6">
-    <div id="video-preview">
-      <button id="record-me" disabled>Record</button>
-      <button id="stop-me" disabled>◼</button>
-      <span id="elasped-time"></span>
-    </div>
-  </div>
+  <div id="video-preview"></div>
 </div>
 {% endblock %}
