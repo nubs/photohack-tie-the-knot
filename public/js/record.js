@@ -33,7 +33,7 @@ function toggleActivateRecordButton() {
 }
 
 function turnOnCamera() {
-  video = $('video');
+  video = $('video#webcam');
   $('#record-me').attr('disabled', false);
 
   video.controls = false;
@@ -42,13 +42,14 @@ function turnOnCamera() {
     // Note: video.onloadedmetadata doesn't fire in Chrome when using getUserMedia so
     // we have to use setTimeout. See crbug.com/110938.
     setTimeout(function() {
+      $('#video-controls').removeClass('hide');
       video.width(320);//video.clientWidth;
       video.height(240);// video.clientHeight;
       // Canvas is 1/2 for performance. Otherwise, getImageData() readback is
       // awful 100ms+ as 640x480.
       canvas[0].width = 320;
       canvas[0].height = 240;
-    }, 1000);
+    }, 1);
   };
 
   navigator.getUserMedia({video: true, audio: true}, function(stream) {
@@ -59,7 +60,7 @@ function turnOnCamera() {
     console.log(e);
     alert('Fine, you get a movie instead of your beautiful face ;)');
 
-    videoattr('src', '/capture.webm');
+    video.attr('src', '/capture.webm');
     finishVideoSetup_();
   });
 };
