@@ -12,12 +12,9 @@
     <div class="page">
         <nav class="header" role="navigation">
           <ul class="nav navbar-nav navbar-left">
-             <!-- 
-                <li {% if page == "home" %} class="active" {% endif %}><a href="/">Home</a></li>
-             -->
              <li class="logo"></li>
-             <li><a href="/" id="loginlink">User Login</a></li>
-             <li><a href="/employer">Employer</a></li>
+             <li {% if page == "home" %} class="active" {% endif %}><a href="/" id="loginlink">User Login</a></li>
+             <li {% if page == "employer" %} class="active" {% endif %}><a href="/employer">Employer</a></li>
           </ul>
         </nav>
         <div class="container-fluid">
