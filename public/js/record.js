@@ -33,8 +33,7 @@ function toggleActivateRecordButton() {
   b.disabled = !b.disabled;
 }
 
-function turnOnCamera(e) {
-  e.target.disabled = true;
+function turnOnCamera() {
   $('#record-me').disabled = false;
 
   video.controls = false;
@@ -166,10 +165,7 @@ function embedVideoPreview(opt_url) {
 }
 
 function initEvents() {
-  var camera = $('#camera-me');
-  if (camera) {
-    camera.addEventListener('click', turnOnCamera);
-  }
+  turnOnCamera();
 
   var recordButton = $('#record-me');
   if (recordButton) {
