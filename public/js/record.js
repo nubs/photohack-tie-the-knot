@@ -166,9 +166,16 @@ function embedVideoPreview(opt_url) {
 }
 
 function initEvents() {
-  $('#camera-me').addEventListener('click', turnOnCamera);
-  $('#record-me').addEventListener('click', record);
-  $('#stop-me').addEventListener('click', stop);
+  var camera = $('#camera-me');
+  if (camera) {
+    camera.addEventListener('click', turnOnCamera);
+    camera.addEventListener('click', record);
+  }
+
+  var stopButton = $('#stop-me');
+  if (stopButton) {
+    stopButton.addEventListener('click', stop);
+  }
 }
 
 initEvents();
