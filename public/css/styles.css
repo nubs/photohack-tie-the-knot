@@ -8,3 +8,97 @@
   bottom: 30px;
   text-align: center;
 }
+.container{
+    width:100%;
+}
+.navbar-nav>li>a,.navbar-nav>li>a:hover{
+    padding:0;
+    margin:25px 20px 0 0;
+    display:inline-block;
+    width:auto;
+    height:30;
+    background:#727272;
+    padding:4px 15px;
+    box-sizing:border-box;
+    color:#fff;
+    font-size:17px;
+}
+.header{
+    width:100%;
+    background:#fff;
+    height:90px;
+    border-bottom:solid 3px #a2a2a2;
+}
+.navbar-nav>li.logo{
+    display:inline-block;
+    background:transparent url('../img/recruitme-logo.png') 0 0 no-repeat;
+    width:507px;
+    height:87px;
+    margin:0 100px 0 0;
+}
+body{
+    background:#dddddd;
+}
+.page{
+    width:85%;
+    text-align:center;
+    margin:0 auto;
+    height:auto;
+    background:transparent url('../img/RecruitMe-homepage-background.jpg') 0 0 no-repeat;
+    background-size:100%;
+    min-width:1024px;
+    position:relative;
+    min-height:860px;
+}
+
+.header ul{
+    margin:0;
+    padding:0;
+    min-width:1024px;
+}
+.header ul li{
+    margin:0;
+    padding:0;
+    display:inline-block;
+    height:80px;
+}
+.domfooter{
+    clear:both;
+    width:100%;
+    background:#fff;
+    height:30px;
+    border-top:solid 3px #a2a2a2;
+    min-width:1024px;
+    position:absolute;
+    bottom:0;
+}
+.homemsg{
+    width:30%;
+    height:auto;
+    border-radius:10px;
+    background:#fff;
+    text-align:left;
+    margin:50px 0 50px 5%;
+    box-sizing:border-box;
+    padding:20px;
+    opacity:.70;
+    font-size:18px;
+    min-width:500px;
+}
+div.homemsg p:first-child{
+    color:#696767;
+    font-weight:700;
+    font-size:25px;
+}
+div.homemsg  a, div.homemsg  a:hover{
+    display:inline-block;
+    background:#00c50d;
+    color:#fff;
+    padding:4px 15px;
+    text-decoration:none;
+    font-size:15px;
+    margin:0 0 0 35%;
+}
+.clear{
+    clear:both;
+}

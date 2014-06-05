@@ -9,26 +9,31 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <ul class="nav navbar-nav navbar-right">
-        <li {% if page == "home" %} class="active" {% endif %}><a href="/">Home</a></li>
-      </ul>
-    </nav>
-    <div class="container">
-      {% if flash.error %}
-        <div class="alert alert-danger">{{ flash.error }}</div>
-      {% endif %}
-      {% if flash.success %}
-        <div class="alert alert-success">{{ flash.success }}</div>
-      {% endif %}
+    <div class="page">
+        <nav class="header" role="navigation">
+          <ul class="nav navbar-nav navbar-left">
+             <!-- 
+                <li {% if page == "home" %} class="active" {% endif %}><a href="/">Home</a></li>
+             -->
+             <li class="logo"></li>
+             <li><a href="/" id="loginlink">User Login</a></li>
+             <li><a href="/employer">Employer</a></li>
+          </ul>
+        </nav>
+        <div class="container">
+          {% if flash.error %}
+            <div class="alert alert-danger">{{ flash.error }}</div>
+          {% endif %}
+          {% if flash.success %}
+            <div class="alert alert-success">{{ flash.success }}</div>
+          {% endif %}
+          {% block content %}{% endblock %}
+         </div>
+        <div class="footer text-center domfooter">
+          <small>&copy;2014 Totally OutLandish</small>
+        </div>
+        <script src="js/whammy.min.js"></script>
+        <script src="js/record.js"></script>
     </div>
-    <div class="container">
-      {% block content %}{% endblock %}
-    </div>
-    <div class="footer text-center">
-      <small>&copy;2014 Dominion Enterprises</small>
-    </div>
-    <script src="js/whammy.min.js"></script>
-    <script src="js/record.js"></script>
   </body>
 </html>
