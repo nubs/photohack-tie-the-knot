@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Form{% endblock %}
+{% block pagecontainerclass %}formpage{% endblock %}
+{% block content %}
+<div class="homemsg">
+    <p>TELL ME ABOUT YOURSELF?</p>
+    <p>Information will display on the video</p><br />
+    
+    <form action="" method="" name="">
+        <label>Full Name (will display on your video resume)</label>
+        <input type="text" name="" value="" />
+        <label>Desired Job Title</label>
+        <input type="text" name="" value="" />
+        <label>Training / Education</label>
+        <input type="text" name="" value="" />
+        <label>Employer<span>Years of Experience</span></label>
+        <input type="text" name="" value="" class="shrt" />
+        <select id="years" name="years">
+            <option value="0-5">less than 5</option>
+            <option value="5-10">5-10</option>
+            <option value="10+">10+</option>
+        </select>
+        <label>Awards</label>
+        <input type="text" name="" value="" class="shrt" />
+        <label>Any additional comments</label>
+        <textarea></textarea>
+    </form>
+    <a href="/video" class="strtvid">Start Video</a>
+</div>
+<br />
+{% endblock %}
