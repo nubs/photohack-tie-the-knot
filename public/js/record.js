@@ -165,10 +165,9 @@ function embedVideoPreview(opt_url) {
 }
 
 function initEvents() {
-  turnOnCamera();
-
   var recordButton = $('#record-me');
   if (recordButton.length) {
+    turnOnCamera();
     recordButton.click(record);
   }
 
