@@ -45,6 +45,7 @@ function turnOnCamera() {
     // we have to use setTimeout. See crbug.com/110938.
     setTimeout(function() {
       $('#video-controls').removeClass('hide');
+      $('#instructions').text('Now get ready to record and hit the Record button below when you are ready to go.  You\'ll receive a series of prompts to respond to.  Hit stop when you are done.');
       video.width(480);//video.clientWidth;
       video.height(360);// video.clientHeight;
       // Canvas is 1/2 for performance. Otherwise, getImageData() readback is
