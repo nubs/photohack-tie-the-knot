@@ -23,7 +23,7 @@
 .header{
     width:100%;
     background:#fff;
-    height:90px;
+    height:110px;
     border-bottom:solid 3px #a2a2a2;
     min-width:1024px;
 }
@@ -32,12 +32,12 @@
     background:transparent url('../img/recruitme-logo.png') 0 0 no-repeat;
     width:507px;
     height:87px;
-    margin:0 100px 0 0;
+    margin:10px 100px 0 10px;
 }
 body{
     background:#dddddd;
 }
-.page,.formpage{
+.page,.formpage,.sharepage{
     text-align:center;
     margin:0 auto;
     height:auto;
@@ -52,6 +52,11 @@ body{
 }
 .formpage{
     background:transparent url('../img/RecruitMe-formPage-background.jpg') 0 0 no-repeat;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.sharepage{
+    background:transparent url('../img/RecruitMe-SharePage-background.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -91,6 +96,7 @@ body{
     background: rgba(255,255,255,0.8);
     font-size:18px;
     min-width:500px;
+    box-shadow: 4px 4px 20px #888888;
 }
 div.homemsg p:first-child{
     color:#696767;
@@ -109,8 +115,22 @@ div.homemsg  a, div.homemsg  a:hover{
 div.homemsg  a.strtvid, div.homemsg  a.strtvid:hover{
     margin:20px 0 0 65%;
 }
-.clear{
-    clear:both;
+div.homemsg  a.share, div.homemsg  a.share:hover{
+    display:inline-block;
+    padding:0;
+    text-decoration:none;
+    width:70px;
+    height:70px;
+    margin:0 10px 0 0;
+}
+div.homemsg  a.facebook, div.homemsg  a.facebook:hover{
+    background:transparent url() 0 0 no-repeat;
+}
+div.homemsg  a.youtube, div.homemsg  a.youtube:hover{
+    background:transparent url() 0 0 no-repeat;
+}
+div.homemsg  a.linked, div.homemsg  a.linked:hover{
+    background:transparent url() 0 0 no-repeat;
 }
 .homemsg form{
     font-size:17px;
@@ -121,6 +141,10 @@ div.homemsg  a.strtvid, div.homemsg  a.strtvid:hover{
 }
 .homemsg form label span{
     float:right;
+}
+.homemsg form label span.req{
+    float:none;
+    font-size:13px;
 }
 .homemsg form input{
     width:90%;
