@@ -1,29 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Form{% endblock %}
+{% block title %}Set up your Video Resume{% endblock %}
 {% block pagecontainerclass %}formpage{% endblock %}
 {% block content %}
 <div class="homemsg">
     <p>TELL ME ABOUT YOURSELF?</p>
-    <p>Information will display on the video</p><br />
+    <p>This information will be used by employers looking for candidates</p><br />
     
-    <form action="" method="" name="">
-        <label>Full Name (will display on your video resume)</label>
-        <input type="text" name="" value="" />
-        <label>Desired Job Title</label>
-        <input type="text" name="" value="" />
+    <form action="/video" method="get" name="resumeform">
+        <label>Full Name <span class="req">(will display on your video resume)<span></label>
+        <input type="text" name="fname" value="" />
+        <label>Desired Job Title <span class="req">(will display on your video resume)<span></label>
+        <input type="text" name="title" value="" />
         <label>Training / Education</label>
-        <input type="text" name="" value="" />
+        <input type="text" name="edu" value="" />
         <label>Employer<span>Years of Experience</span></label>
-        <input type="text" name="" value="" class="shrt" />
+        <input type="text" name="employer" value="" class="shrt" />
         <select id="years" name="years">
-            <option value="0-5">less than 5</option>
-            <option value="5-10">5-10</option>
-            <option value="10+">10+</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15+</option>
         </select>
         <label>Awards</label>
-        <input type="text" name="" value="" class="shrt" />
+        <input type="text" name="awards" value="" class="shrt" />
         <label>Any additional comments</label>
-        <textarea></textarea>
+        <textarea name="comments"></textarea>
     </form>
     <a href="/video" class="strtvid">Start Video</a>
 </div>

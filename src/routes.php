@@ -12,4 +12,7 @@ return function(\Slim\Slim $app) {
     $app->get('/form', function() use($app) {
         $app->render('form.html', ['page' => 'form']);
     })->name('form');
+    $app->get('/share', function() use($app) {
+        $app->render('share.html', ['page' => 'share']);
+    })->name('share');
 };
