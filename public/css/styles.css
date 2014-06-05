@@ -8,9 +8,6 @@
   bottom: 30px;
   text-align: center;
 }
-.container{
-    width:100%;
-}
 .navbar-nav>li>a,.navbar-nav>li>a:hover{
     padding:0;
     margin:25px 20px 0 0;
@@ -40,7 +37,6 @@ body{
     background:#dddddd;
 }
 .page{
-    width:85%;
     text-align:center;
     margin:0 auto;
     height:auto;
