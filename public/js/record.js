@@ -132,14 +132,13 @@ function stop() {
               ((endTime - startTime) / 1000) + 's video');
 
   var audioPromise = stopRecording();
-  var videoData = embedVideoPreview();
 
   audioPromise.done(function(audioBlob) {
     var reader = new FileReader();
     reader.onload = function(event){
         $.post('/submit', JSON.stringify({
           audio: event.target.result,
-          video: videoData
+          video: frames
         }), function(data){
           video.attr('src', 'data:video/webm;base64,' + data);
           video.attr({
@@ -150,6 +149,7 @@ function stop() {
               video[0].muted = false;
               video[0].volume = 1;
           }
+          embedVideoPreview();
         }, 'text');
     };
 
@@ -161,11 +161,10 @@ function embedVideoPreview(opt_url) {
   var url = opt_url || null;
   var downloadLink = $('#resume-record a[download]');
 
-  window.URL.revokeObjectURL(video.attr('src'));
-
   downloadLink = $('<a></a>');
   downloadLink.attr({
     download: 'capture.webm',
+    href: video.attr('src'),
     title: 'Download your video'
   });
   downloadLink.text('[ download video ]');
@@ -173,8 +172,6 @@ function embedVideoPreview(opt_url) {
   p.append(downloadLink);
 
   $('#resume-record').append(p);
-
-  return frames;
 }
 
 function initEvents() {
