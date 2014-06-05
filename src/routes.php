@@ -5,7 +5,7 @@ return function(\Slim\Slim $app) {
     })->name('home');
 
     $app->get('/employer', function() use($app) {
-        $app->render('employer.html', ['page' => 'employer']);
+        $app->render('employer.html', ['page' => 'employer','foo'=>'EMPLOYEES']);
     })->name('employer');
 
     $app->get('/video', function() use($app) {
