@@ -42,6 +42,7 @@ function turnOnCamera() {
     // Note: video.onloadedmetadata doesn't fire in Chrome when using getUserMedia so
     // we have to use setTimeout. See crbug.com/110938.
     setTimeout(function() {
+      $('#video-controls').removeClass('hide');
       video.width(320);//video.clientWidth;
       video.height(240);// video.clientHeight;
       // Canvas is 1/2 for performance. Otherwise, getImageData() readback is
