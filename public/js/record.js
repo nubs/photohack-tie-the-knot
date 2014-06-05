@@ -171,10 +171,9 @@ function initEvents() {
     camera.addEventListener('click', turnOnCamera);
   }
 
-  var record = $('#record-me');
-  if (record) {
-    record.addEventListener('click', record);
-
+  var recordButton = $('#record-me');
+  if (recordButton) {
+    recordButton.addEventListener('click', record);
   }
 
   var stopButton = $('#stop-me');
