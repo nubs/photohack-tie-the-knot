@@ -1,20 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-  <details>
-  <summary>What's this?</summary>
-  <div>
-    <p>An example of creating a .webm movie from a <code>getUserMedia()</code> video capture.</p>
-    <p><b>Support:</b> Chrome 21 supports <code>getUserMedia()</code>.</p>
-  </div>
-</details>
-
-<h2>Recording .webm video from a <code>getUserMedia()</code>.</h2>
-
-<section>
 <div style="float:left;">
-  <button id="camera-me">1. Turn on camera</button>
-  <h4><code>getUserMedia()</code> feed</h4>
+  <button id="camera-me">Turn on camera</button>
   <div id='videoContainer'>
     <div id='overlay'></div>
     <div>
@@ -23,11 +11,8 @@
   </div>
 </div>
 <div id="video-preview">
-  <button id="record-me" disabled>2. Record<!--⚫--></button>
+  <button id="record-me" disabled>Record</button>
   <button id="stop-me" disabled>◼</button>
-  <!--<button id="play-me" disabled>►</button>-->
   <span id="elasped-time"></span>
-  <h4>.webm recording (no audio)</h4>
 </div>
-</section>
 {% endblock %}
