@@ -27,7 +27,7 @@ var audioWav;
 
 function toggleActivateRecordButton() {
   var b = $('#record-me');
-  b.text(b.attr('disabled') ? 'Record' : 'Recording...');
+  b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-stop"> Record</span>' : '<span class="glyphicon glyphicon-stop"> Recording...</span>');
   b.toggleClass('recording');
   b.attr('disabled', !b.attr('disabled'));
 }
@@ -43,12 +43,12 @@ function turnOnCamera() {
     // we have to use setTimeout. See crbug.com/110938.
     setTimeout(function() {
       $('#video-controls').removeClass('hide');
-      video.width(320);//video.clientWidth;
-      video.height(240);// video.clientHeight;
+      video.width(480);//video.clientWidth;
+      video.height(360);// video.clientHeight;
       // Canvas is 1/2 for performance. Otherwise, getImageData() readback is
       // awful 100ms+ as 640x480.
-      canvas[0].width = 320;
-      canvas[0].height = 240;
+      canvas[0].width = 480;
+      canvas[0].height = 360;
     }, 1);
   };
 
@@ -67,8 +67,8 @@ function turnOnCamera() {
 
 function record() {
   var ctx = canvas[0].getContext('2d');
-  var CANVAS_HEIGHT = 240;
-  var CANVAS_WIDTH = 320;
+  var CANVAS_HEIGHT = 360;
+  var CANVAS_WIDTH = 480;
 
   frames = []; // clear existing frames;
   startTime = Date.now();
@@ -132,8 +132,8 @@ function embedVideoPreview(opt_url) {
       controls: true,
       loop: true
     });
-    video.width(320);
-    video.height(240);
+    video.width(480);
+    video.height(360);
     $('#video-preview').append(video);
     
     downloadLink = $('<a></a>');
