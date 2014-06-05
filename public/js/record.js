@@ -15,7 +15,7 @@ navigator.getUserMedia = navigator.getUserMedia ||
     navigator.msGetUserMedia;
 
 var ORIGINAL_DOC_TITLE = document.title;
-var video = $('video');
+var video = $('video#webcam');
 var canvas = $('<canvas></canvas>'); // offscreen canvas.
 var rafId = null;
 var startTime = null;
@@ -31,7 +31,6 @@ function toggleActivateRecordButton() {
 }
 
 function turnOnCamera() {
-  video = $('video#webcam');
   $('#record-me').attr('disabled', false);
 
   video.controls = false;
