@@ -161,17 +161,20 @@ function embedVideoPreview(opt_url) {
   var url = opt_url || null;
   var downloadLink = $('#resume-record a[download]');
 
-  downloadLink = $('<a></a>');
+  if (downloadLink.length == 0) {
+      downloadLink = $('<a></a>');
+      var p = $('<p></p>');
+      p.append(downloadLink);
+
+      $('#resume-record').append(p);
+  }
+
   downloadLink.attr({
     download: 'capture.webm',
     href: video.attr('src'),
     title: 'Download your video'
   });
   downloadLink.text('[ download video ]');
-  var p = $('<p></p>');
-  p.append(downloadLink);
-
-  $('#resume-record').append(p);
 }
 
 function initEvents() {
