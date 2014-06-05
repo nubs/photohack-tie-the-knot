@@ -15,13 +15,14 @@ navigator.getUserMedia = navigator.getUserMedia ||
     navigator.msGetUserMedia;
 
 var ORIGINAL_DOC_TITLE = document.title;
-var video = $('video');
+var video = $('video#webcam');
 var canvas = $('<canvas></canvas>'); // offscreen canvas.
 var rafId = null;
 var startTime = null;
 var endTime = null;
 var frames = [];
 var audioWav;
+var webcamStream;
 
 function toggleActivateRecordButton() {
   var b = $('#record-me');
@@ -31,10 +32,13 @@ function toggleActivateRecordButton() {
 }
 
 function turnOnCamera() {
-  video = $('video#webcam');
   $('#record-me').attr('disabled', false);
 
-  video.controls = false;
+  video.attr({
+    autoplay: true,
+    controls: false,
+    loop: false
+  });
 
   var finishVideoSetup_ = function() {
     // Note: video.onloadedmetadata doesn't fire in Chrome when using getUserMedia so
@@ -50,20 +54,29 @@ function turnOnCamera() {
     }, 1);
   };
 
-  navigator.getUserMedia({video: true, audio: true}, function(stream) {
-    video.attr('src', window.URL.createObjectURL(stream));
+  if (webcamStream) {
+    video.attr('src', window.URL.createObjectURL(webcamStream));
     finishVideoSetup_();
-    audioInit(stream);
-  }, function(e) {
-    console.log(e);
-    alert('Fine, you get a movie instead of your beautiful face ;)');
+    audioInit(webcamStream);
+  } else {
+    navigator.getUserMedia({video: true, audio: true}, function(stream) {
+      webcamStream = stream;
+      video.attr('src', window.URL.createObjectURL(webcamStream));
+      finishVideoSetup_();
+      audioInit(webcamStream);
+    }, function(e) {
+      console.log(e);
+      alert('Fine, you get a movie instead of your beautiful face ;)');
 
-    video.attr('src', '/capture.webm');
-    finishVideoSetup_();
-  });
+      video.attr('src', '/capture.webm');
+      finishVideoSetup_();
+    });
+  }
 };
 
 function record() {
+  turnOnCamera();
+
   var ctx = canvas[0].getContext('2d');
   var CANVAS_HEIGHT = 360;
   var CANVAS_WIDTH = 480;
@@ -120,34 +133,26 @@ function stop() {
 
 function embedVideoPreview(opt_url) {
   var url = opt_url || null;
-  var video = $('#video-preview video');
-  var downloadLink = $('#video-preview a[download]');
+  var downloadLink = $('#resume-record a[download]');
 
-  if (!video.length) {
-    video = $('<video></video>');
-    video.attr({
-      autoplay: true,
-      controls: true,
-      loop: true
-    });
-    video.width(480);
-    video.height(360);
-    $('#video-preview').append(video);
-    
-    downloadLink = $('<a></a>');
-    downloadLink.attr({
-      download: 'capture.webm',
-      title: 'Download your video'
-    });
-    downloadLink.text('[ download video ]');
-    var p = $('<p></p>');
-    p.append(downloadLink);
+  window.URL.revokeObjectURL(video.attr('src'));
 
-    $('#video-preview').append(p);
+  video.attr({
+    autoplay: true,
+    controls: true,
+    loop: true
+  });
 
-  } else {
-    window.URL.revokeObjectURL(video.attr('src'));
-  }
+  downloadLink = $('<a></a>');
+  downloadLink.attr({
+    download: 'capture.webm',
+    title: 'Download your video'
+  });
+  downloadLink.text('[ download video ]');
+  var p = $('<p></p>');
+  p.append(downloadLink);
+
+  $('#resume-record').append(p);
 
   if (!url) {
     var webmBlob = Whammy.fromImageArray(frames, 1000 / 30);

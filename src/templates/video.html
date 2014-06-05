@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="homemsg">
+<div class="homemsg" id="resume-record">
   <video id="webcam" autoplay muted></video>
-  <div id="video-controls" class="btn-group btn-group-lg btn-group-justified hide">
-    <div class="btn-group">
-      <button type="button" id="record-me" class="btn btn-danger" disabled><span class="glyphicon glyphicon-record"></span> Record</button>
-    </div>
-    <div class="btn-group">
-      <button type="button" id="stop-me" class="btn btn-info" disabled><span class="glyphicon glyphicon-stop"></span> Stop</button>
-    </div>
+  <div class="well">
+      First, allow access to your webcam.
+      <hr>
+      <div id="video-controls" class="btn-group btn-group-lg btn-group-justified hide">
+        <div class="btn-group">
+          <button type="button" id="record-me" class="btn btn-danger" disabled><span class="glyphicon glyphicon-record"></span> Record</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" id="stop-me" class="btn btn-info" disabled><span class="glyphicon glyphicon-stop"></span> Stop</button>
+        </div>
+      </div>
   </div>
-  <div id="video-preview"></div>
 </div>
 {% endblock %}
