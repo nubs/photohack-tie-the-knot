@@ -17,8 +17,6 @@ navigator.getUserMedia = navigator.getUserMedia ||
 var ORIGINAL_DOC_TITLE = document.title;
 var video = $('video');
 var canvas = $('<canvas></canvas>'); // offscreen canvas.
-$('body').append(canvas);
-canvas = $('canvas');
 var rafId = null;
 var startTime = null;
 var endTime = null;
