@@ -14,6 +14,9 @@ much any hosting though.
 </VirtualHost>
 
 <Directory {PATH_TO_CODE}/public>
+    RewriteEngine on
+    RewriteCond %{SCRIPT_FILENAME} !-f
+    RewriteRule ^ index.php [L]
     Options Indexes FollowSymLinks
     AllowOverride None
     Require all granted
