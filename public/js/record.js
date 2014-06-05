@@ -48,7 +48,6 @@ function turnOnCamera() {
       // awful 100ms+ as 640x480.
       canvas[0].width = 320;
       canvas[0].height = 240;
-      $('#overlay').width(video.width()).html('CHECK OUT THIS VIDEO!!!');
     }, 1000);
   };
 
