@@ -25,6 +25,7 @@
     background:#fff;
     height:90px;
     border-bottom:solid 3px #a2a2a2;
+    min-width:1024px;
 }
 .navbar-nav>li.logo{
     display:inline-block;
@@ -36,16 +37,25 @@
 body{
     background:#dddddd;
 }
-.page{
+.page,.formpage{
     text-align:center;
     margin:0 auto;
     height:auto;
-    background:transparent url('../img/RecruitMe-homepage-background.jpg') 0 0 no-repeat;
-    background-size:100%;
     min-width:1024px;
     position:relative;
     min-height:860px;
 }
+.page{
+    background:transparent url('../img/RecruitMe-homepage-background.jpg') 0 0 no-repeat;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.formpage{
+    background:transparent url('../img/RecruitMe-formPage-background.jpg') 0 0 no-repeat;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
 
 .header ul{
     margin:0;
@@ -77,7 +87,8 @@ body{
     margin:50px 0 50px 5%;
     box-sizing:border-box;
     padding:20px;
-    opacity:.70;
+    opacity:.80;
+    background: rgba(255,255,255,0.8);
     font-size:18px;
     min-width:500px;
 }
@@ -95,6 +106,39 @@ div.homemsg  a, div.homemsg  a:hover{
     font-size:15px;
     margin:0 0 0 35%;
 }
+div.homemsg  a.strtvid, div.homemsg  a.strtvid:hover{
+    margin:20px 0 0 65%;
+}
 .clear{
     clear:both;
+}
+.homemsg form{
+    font-size:17px;
+}
+.homemsg form label{
+    display:block;
+    width:90%;
+}
+.homemsg form label span{
+    float:right;
+}
+.homemsg form input{
+    width:90%;
+    height:30px;
+    margin:0 0 20px 0;
+    background: rgba(255,255,255,1);
+}
+.homemsg form textarea{
+    width:90%;
+    height:120px;
+}
+.homemsg form input.shrt{
+    width:50%;
+    margin-right:60px;
+}
+.homemsg form select{
+    width:20%;
+    height:30px;
+    margin:0 0 20px 0;
+    background: rgba(255,255,255,1);
 }
