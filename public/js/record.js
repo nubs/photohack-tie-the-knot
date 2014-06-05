@@ -21,6 +21,7 @@ var rafId = null;
 var startTime = null;
 var endTime = null;
 var frames = [];
+var audioWav;
 
 function $(selector) {
   return document.querySelector(selector) || null;
@@ -55,6 +56,7 @@ function turnOnCamera() {
   navigator.getUserMedia({video: true, audio: true}, function(stream) {
     video.src = window.URL.createObjectURL(stream);
     finishVideoSetup_();
+    audioInit(stream);
   }, function(e) {
     console.log(e);
     alert('Fine, you get a movie instead of your beautiful face ;)');
@@ -102,6 +104,7 @@ function record() {
   };
 
   rafId = requestAnimationFrame(drawVideoFrame_);
+  startRecording();
 };
 
 function stop() {
@@ -116,6 +119,7 @@ function stop() {
               ((endTime - startTime) / 1000) + 's video');
 
   embedVideoPreview();
+  stopRecording();
 };
 
 function embedVideoPreview(opt_url) {
@@ -193,3 +197,43 @@ exports.$ = $;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
+  var audio_context;
+  var recorder;
+
+  function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+    
+    recorder = new Recorder(input, {workerPath: '/js/recorderWorker.js'});
+  }
+
+  function startRecording() {
+    recorder && recorder.record();
+  }
+
+  function stopRecording() {
+    recorder && recorder.stop();
+    
+    // create WAV download link using audio data blob
+    recorder && recorder.exportWAV(function(blob) {
+        audioWav = blob;
+      }
+    );
+    
+    recorder.clear();
+  }
+
+  function audioInit(stream) {
+    try {
+      // webkit shim
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+      window.URL = window.URL || window.webkitURL;
+      
+      audio_context = new AudioContext;
+    } catch (e) {
+      alert('No web audio support in this browser!');
+    }
+    
+    startUserMedia(stream);
+  };
