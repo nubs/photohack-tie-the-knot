@@ -60,7 +60,7 @@ function turnOnCamera(e) {
     console.log(e);
     alert('Fine, you get a movie instead of your beautiful face ;)');
 
-    video.src = 'Chrome_ImF.mp4';
+    video.src = '/capture.webm';
     finishVideoSetup_();
   });
 };
