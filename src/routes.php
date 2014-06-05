@@ -15,4 +15,23 @@ return function(\Slim\Slim $app) {
     $app->get('/share', function() use($app) {
         $app->render('share.html', ['page' => 'share']);
     })->name('share');
+    $app->post('/submit', function() use($app) {
+        $app->contentType('application/json');
+        $tmpDir = uniqid();
+        $audioFile = "/tmp/{$tmpDir}/audio.wav";
+        $frameBase = "/tmp/{$tmpDir}/frame";
+        $outputFile = "/tmp/{$tmpDir}/output.webm";
+        mkdir("/tmp/{$tmpDir}");
+        $data = json_decode($app->request->getBody(), true);
+        $videoFrames = $data['video'];
+        foreach ($videoFrames as $index => $frame) {
+            file_put_contents("{$frameBase}{$index}.jpg", base64_decode(substr($frame, strpos($frame, ',') + 1)));
+        }
+
+        $audioData = $data['audio'];
+        file_put_contents($audioFile, base64_decode(substr($audioData, strpos($audioData, ',') + 1)));
+
+        exec("avconv -i {$audioFile} -i {$frameBase}%d.jpg -r 25 -bufsize 10000k -threads 32 {$outputFile}");
+        $app->response->setBody(base64_encode(file_get_contents($outputFile)));
+    })->name('submit');
 };

@@ -18,6 +18,7 @@ var ORIGINAL_DOC_TITLE = document.title;
 var video = $('video#webcam');
 var canvas = $('<canvas></canvas>'); // offscreen canvas.
 var rafId = null;
+var timeoutId = null;
 var startTime = null;
 var endTime = null;
 var frames = [];
@@ -39,6 +40,9 @@ function turnOnCamera() {
     controls: false,
     loop: false
   });
+  video[0].onloadeddata = function() {
+      video[0].muted = true;
+  }
 
   var finishVideoSetup_ = function() {
     // Note: video.onloadedmetadata doesn't fire in Chrome when using getUserMedia so
@@ -78,47 +82,46 @@ function turnOnCamera() {
 function record() {
   turnOnCamera();
 
-  var ctx = canvas[0].getContext('2d');
-  var CANVAS_HEIGHT = 360;
-  var CANVAS_WIDTH = 480;
-
   frames = []; // clear existing frames;
   startTime = Date.now();
 
   toggleActivateRecordButton();
   $('#stop-me').attr('disabled', false);
 
-  function drawVideoFrame_(time) {
-    rafId = requestAnimationFrame(drawVideoFrame_);
-
-    ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    ctx.lineWidth=5;
-    ctx.fillStyle="#ffffff";
-    ctx.lineStyle="#000000";
-    ctx.font="24px sans-serif";
-    ctx.fillText("CHECK OUT THIS VIDEO", 20, 200);
-
-    document.title = 'Recording...' + Math.round((Date.now() - startTime) / 1000) + 's';
-
-    // Read back canvas as webp.
-    //console.time('canvas.dataURL() took');
-    var url = canvas[0].toDataURL('image/webp', 1); // image/jpeg is way faster :(
-    //console.timeEnd('canvas.dataURL() took');
-    frames.push(url);
- 
-    // UInt8ClampedArray (for Worker).
-    //frames.push(ctx.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT).data);
-
-    // ImageData
-    //frames.push(ctx.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT));
-  };
-
   rafId = requestAnimationFrame(drawVideoFrame_);
+  keepDrawing();
   startRecording();
 };
 
+function drawVideoFrame_(time) {
+  var CANVAS_HEIGHT = 360;
+  var CANVAS_WIDTH = 480;
+  var ctx = canvas[0].getContext('2d');
+
+  ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  ctx.lineWidth=5;
+  ctx.fillStyle="#ffffff";
+  ctx.lineStyle="#000000";
+  ctx.font="24px sans-serif";
+  ctx.fillText("CHECK OUT THIS VIDEO", 20, 200);
+
+  document.title = 'Recording...' + Math.round((Date.now() - startTime) / 1000) + 's';
+
+  var url = canvas[0].toDataURL('image/jpeg', 0.7); // image/jpeg is way faster :(
+  frames.push(url);
+};
+
+function keepDrawing() {
+  var FRAME_RATE = 25;
+  timeoutId = setTimeout(function () {
+      rafId = requestAnimationFrame(drawVideoFrame_);
+      keepDrawing();
+  }, 1000 / FRAME_RATE);
+}
+
 function stop() {
   cancelAnimationFrame(rafId);
+  clearTimeout(timeoutId);
   endTime = Date.now();
   $('#stop-me').attr('disabled', true);
   document.title = ORIGINAL_DOC_TITLE;
@@ -128,8 +131,30 @@ function stop() {
   console.log('frames captured: ' + frames.length + ' => ' +
               ((endTime - startTime) / 1000) + 's video');
 
-  embedVideoPreview();
-  stopRecording();
+  var audioPromise = stopRecording();
+  var videoData = embedVideoPreview();
+
+  audioPromise.done(function(audioBlob) {
+    var reader = new FileReader();
+    reader.onload = function(event){
+        $.post('/submit', JSON.stringify({
+          audio: event.target.result,
+          video: videoData
+        }), function(data){
+          video.attr('src', 'data:video/webm;base64,' + data);
+          video.attr({
+            autoplay: true,
+            controls: true
+          });
+          video[0].onloadeddata = function() {
+              video[0].muted = false;
+              video[0].volume = 1;
+          }
+        }, 'text');
+    };
+
+    reader.readAsDataURL(audioBlob);//Convert the blob from clipboard to base64
+  });
 };
 
 function embedVideoPreview(opt_url) {
@@ -137,12 +162,6 @@ function embedVideoPreview(opt_url) {
   var downloadLink = $('#resume-record a[download]');
 
   window.URL.revokeObjectURL(video.attr('src'));
-
-  video.attr({
-    autoplay: true,
-    controls: true,
-    loop: true
-  });
 
   downloadLink = $('<a></a>');
   downloadLink.attr({
@@ -155,13 +174,7 @@ function embedVideoPreview(opt_url) {
 
   $('#resume-record').append(p);
 
-  if (!url) {
-    var webmBlob = Whammy.fromImageArray(frames, 1000 / 30);
-    url = window.URL.createObjectURL(webmBlob);
-  }
-
-  video.attr('src', url);
-  downloadLink.attr('href', url);
+  return frames;
 }
 
 function initEvents() {
@@ -207,13 +220,16 @@ initEvents();
   function stopRecording() {
     recorder && recorder.stop();
     
+    var deferred = $.Deferred();
+
     // create WAV download link using audio data blob
     recorder && recorder.exportWAV(function(blob) {
-        audioWav = blob;
+        deferred.resolve(blob);
       }
     );
     
     recorder.clear();
+    return deferred.promise();
   }
 
   function audioInit(stream) {
