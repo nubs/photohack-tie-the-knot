@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="row-fluid">
-  <div class="homemsg col-md-6">
-    <video autoplay muted></video>
+<div class="homemsg">
+  <video autoplay muted></video>
+  <div id="video-controls">
+    <button id="record-me" disabled>Record</button>
+    <button id="stop-me" disabled>◼</button>
   </div>
-  <div class="homemsg col-md-6">
-    <div id="video-preview">
-      <button id="record-me" disabled>Record</button>
-      <button id="stop-me" disabled>◼</button>
-    </div>
-  </div>
+  <div id="video-preview"></div>
 </div>
 {% endblock %}
