@@ -157,7 +157,7 @@ function embedVideoPreview(opt_url) {
   // var webmBlob = encoder.compile();
 
   if (!url) {
-    var webmBlob = Whammy.fromImageArray(frames, 1000 / 60);
+    var webmBlob = Whammy.fromImageArray(frames, 1000 / 30);
     url = window.URL.createObjectURL(webmBlob);
   }
 
