@@ -25,7 +25,7 @@ var audioWav;
 
 function toggleActivateRecordButton() {
   var b = $('#record-me');
-  b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-stop"> Record</span>' : '<span class="glyphicon glyphicon-stop"> Recording...</span>');
+  b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-record"> Record</span>' : '<span class="glyphicon glyphicon-record"> Recording...</span>');
   b.toggleClass('recording');
   b.attr('disabled', !b.attr('disabled'));
 }
