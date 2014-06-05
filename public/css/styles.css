@@ -119,18 +119,21 @@ div.homemsg  a.share, div.homemsg  a.share:hover{
     display:inline-block;
     padding:0;
     text-decoration:none;
-    width:70px;
-    height:70px;
+    width:99px;
+    height:101px;
     margin:0 10px 0 0;
 }
 div.homemsg  a.facebook, div.homemsg  a.facebook:hover{
-    background:transparent url() 0 0 no-repeat;
+    background:transparent url('../img/facebook.png') 0 0 no-repeat;
 }
 div.homemsg  a.youtube, div.homemsg  a.youtube:hover{
-    background:transparent url() 0 0 no-repeat;
+    background:transparent url('../img/youtube.png') 0 0 no-repeat;
 }
 div.homemsg  a.linked, div.homemsg  a.linked:hover{
-    background:transparent url() 0 0 no-repeat;
+    background:transparent url('../img/linkedin.png') 0 0 no-repeat;
+}
+div.homemsg  a.gplus, div.gplus  a.linked:hover{
+    background:transparent url('../img/gplus.png') 0 0 no-repeat;
 }
 .homemsg form{
     font-size:17px;
