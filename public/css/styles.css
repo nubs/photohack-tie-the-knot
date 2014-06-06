@@ -4,9 +4,10 @@
     display:inline-block;
     width:auto;
     height:30;
-    background:#820808;
+    background:#9cd8d4;
     padding:4px 15px;
     box-sizing:border-box;
+    border-radius:5px;
     color:#fff;
     font-size:17px;
 }
@@ -19,7 +20,7 @@
 }
 .navbar-nav>li.logo{
     display:inline-block;
-    background:transparent url('../img/horiz-logo.png') 0 0 no-repeat;
+    background:transparent url('../img/tieTheKnot-logo.png') 0 0 no-repeat;
     width:800px;
     height:68px;
     margin:10px 100px 0 10px;
@@ -36,17 +37,17 @@ body{
     min-height:860px;
 }
 .page{
-    background:transparent url('../img/1-BMW.jpg') 0 0 no-repeat;
+    background:transparent url('../img/wedding-rings-wallpaper1.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
 .formpage{
-    background:transparent url('../img/1-Harley.jpg') 0 0 no-repeat;
+    background:transparent url('../img/home-06-princess-wedding.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
 .sharepage{
-    background:transparent url('../img/1-kawasaki.jpg') 0 0 no-repeat;
+    background:transparent url('../img/home-05-princess-wedding.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -56,7 +57,7 @@ body{
     background-size:cover;
 }
 .videopage{
-    background:transparent url('../img/1-yamaha.jpg') 0 0 no-repeat;
+    background:transparent url('../img/Parlour-Wedding-Collection-0043.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -110,12 +111,13 @@ p.lead{
 }
 div.homemsg  a, div.homemsg  a:hover{
     display:inline-block;
-    background:#820808;
+    background:#9cd8d4;
     color:#fff;
     padding:4px 15px;
     text-decoration:none;
     font-size:15px;
     margin:0 0 0 35%;
+    border-radius:5px;
 }
 div.homemsg  a.strtvid, div.homemsg  a.strtvid:hover{
     margin:20px 0 0 65%;

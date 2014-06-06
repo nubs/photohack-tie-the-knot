@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Set up your Video Resume{% endblock %}
+{% block title %}Enter your information{% endblock %}
 {% block pagecontainerclass %}formpage{% endblock %}
 {% block content %}
 
@@ -13,38 +13,14 @@ $(document).ready(function(){
 });
 </script>
 <div class="homemsg">
-    <p class="lead">ENTER VEHICLE DETAILS</p>
-    <p>This information will be on the final video.</p><br />
+    <p class="lead">ENTER YOUR NAME(s)</p>
+    <p>This information will be saved to the bride & groom's wedding video.</p><br />
     
     <form action="/video" method="post" name="resumeform" id="resumeform">
-        <label>Make</label>
-        <select id="years" name="make" class="full">
-            <option value="BMW">BMW</option>
-            <option value="Harley Davidson">Harley-Davidson</option>
-            <option value="Honda">Honda</option>
-            <option value="Kawasaki">Kawasaki</option>
-        </select>
-        <label>Model</label>
-        <select id="years" name="model" class="full">
-            <option value="All Models">All Models</option>
-            <option value="Shadow">Shadow</option>
-            <option value="CTX">CTX</option>
-            <option value="Gold Wing">Gold Wing</option>
-            <option value="Fury">Fury</option>
-        </select>
-        <label>Price<span>Year</span></label>
-        <input type="text" name="price" value="" class="shrt" />
-        <select id="years" name="year">
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-        </select>
-        <label>Seller Name</label>
-        <input type="text" name="name" id="location" value="" />
-        <label>Seller Phone</label>
-        <input type="text" name="phone" id="location" value="" class="shrt"  />
+        <label>Your Names</label>
+        <input type="" value="" name="names" />
+        <label>Short Message</label>
+        <textarea name="message"></textarea>
     </form>
     <a href="/video" class="strtvid">Start Video</a>
 </div>
