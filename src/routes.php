@@ -20,10 +20,6 @@ return function(\Slim\Slim $app) {
         $app->render('form.html', ['page' => 'form']);
     })->name('form');
 
-    $app->get('/share', function() use($app) {
-        $app->render('share.html', ['page' => 'share']);
-    })->name('share');
-
     $app->post('/submit', function() use($app) {
         $app->contentType('application/json');
         $tmpDir = uniqid();
