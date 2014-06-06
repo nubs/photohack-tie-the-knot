@@ -2,11 +2,18 @@
 {% block title %}Share Your Video{% endblock %}
 {% block pagecontainerclass %}sharepage{% endblock %}
 {% block content %}
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+  api_key: 77kpre9guy02pe
+  authorize: true
+  onLoad: onLinkedInLoad
+  scope: r_basicprofile rw_nus
+</script>
 <div class="homemsg">
     <p class="lead">YOUR VEHICLE IS ALMOST SOLD!</p>
     <p>You have created your video, now you just need to share. Where would you like to share it?</p><br />  
+
     <a id="youtube" class="share youtube"></a>
-    <a class="share linked share-disabled"></a>
+    <a id="linkedin" class="share linked share-disabled"></a>
     <a class="share facebook share-disabled"></a>
     <a class="share gplus share-disabled"></a>
     <div id="youtubeLink"></div>

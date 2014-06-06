@@ -29,6 +29,7 @@ var startFade;
 var startTimer;
 var timer;
 var videoId;
+var youtubeUrl;
 
 function toggleActivateRecordButton() {
 
