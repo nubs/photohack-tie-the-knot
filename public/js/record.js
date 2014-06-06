@@ -132,7 +132,7 @@ function keepDrawing() {
   timeoutId = setTimeout(function () {
       keepDrawing();
       drawVideoFrame_();
-  }, ((frames.length + 1) * (1000 / FRAME_RATE)) - (Date.now() - startTime));
+  }, ((((((((frames.length)) + (1)) * (((1000)) / ((FRAME_RATE)))) - ((((Date.now()))) - startTime))))));
 }
 
 function stop() {
