@@ -1,6 +1,13 @@
 <?php
 use TOL\PhotoHack\Youtube;
 
+function hostName()
+{
+    $protocol = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+    $serverName = $_SERVER['SERVER_NAME'];
+    return $protocol . $serverName;
+}
+
 return function($app) {
     $twigView = new \Slim\Views\Twig();
     $twigView->parserOptions = ['autoescape' => false];
@@ -18,7 +25,8 @@ return function($app) {
         $client->setClientId(getenv('YOUTUBE_CLIENT_ID'));
         $client->setClientSecret(getenv('YOUTUBE_CLIENT_SECRET'));
         $client->setScopes('https://www.googleapis.com/auth/youtube');
-        $client->setRedirectUri('http://local.photohack.com/share');
+        $serverName = hostName();
+        $client->setRedirectUri("{$serverName}/share");
         $token = $app->getCookie('token');
         if ($token) {
             $client->setAccessToken($token);
