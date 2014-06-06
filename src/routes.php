@@ -16,7 +16,7 @@ return function(\Slim\Slim $app) {
         $year = $app->request->post('year');
         $phone = $app->request->post('phone');
         $name = $app->request->post('name');
-        $app->setCookie('formInfo', json_encode(['vidname' => $name, 'vidtitle' => $title]));
+        $app->setCookie('formInfo', json_encode(['vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' => $name . ' ' .  $phone]));
         $app->render('video.html', ['page' => 'video', 'vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' =>  $name . ' ' . $phone]);
     })->name('video');
 
