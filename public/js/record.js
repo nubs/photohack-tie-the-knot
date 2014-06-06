@@ -28,7 +28,6 @@ var startFade;
 var startTimer;
 var timer;
 
-
 function toggleActivateRecordButton() {
 
   var b = $('#record-me');
@@ -84,10 +83,6 @@ function turnOnCamera() {
       finishVideoSetup_();
     });
   }
-
-
-
-
 };
 
 function record() {
@@ -103,8 +98,6 @@ function record() {
   rafId = requestAnimationFrame(drawVideoFrame_);
   keepDrawing();
   startRecording();
-
-
 };
 
 function drawVideoFrame_(time) {
@@ -221,13 +214,11 @@ function initEvents() {
 
 initEvents();
 
-
 function countdowntimer2(){
     var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','OTHER EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
     var framepromptstimer = new Array(4,5,10,5,10,10,10);
     var frametimer;
     var countdowntimer;
-
 
       //start the record animation
       startFade = setInterval(function(){
@@ -249,8 +240,6 @@ function countdowntimer2(){
             $('#timer').text(countdowntimer);
             clearInterval(startTimer);
             startTimer = setInterval(countdown, 1000);
-
-
 
             frameprompts.shift();
             framepromptstimer.shift();
