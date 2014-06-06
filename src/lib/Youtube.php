@@ -27,7 +27,7 @@ class Youtube
 
         // Associate the snippet and status objects with a new video resource.
         $video = new Google_Service_YouTube_Video();
-        $video->setSnippet($this->_buildSnippet());
+        $video->setSnippet($this->_buildSnippet($title, $description, $tags));
         $video->setStatus($this->_buildStatus());
 
         $status = $this->_uploadVideo($client, $youtube, $video, $path);
