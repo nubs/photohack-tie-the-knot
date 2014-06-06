@@ -5,13 +5,6 @@
 
 <script>
 $(document).ready(function(){
-    $.get("http://ipinfo.io", function(response) {
-         $('#location').val(response.city).css({"color":"#a2a2a2","font-style":"italic"});
-    }, "jsonp");
-    $('#location').focus(function() {
-      $(this).css({"color":"#000","font-style":"normal"});
-    }); 
-    
     $('.strtvid').on('click',function(event){
         event.preventDefault();
         $( "#resumeform" ).submit();
@@ -20,41 +13,38 @@ $(document).ready(function(){
 });
 </script>
 <div class="homemsg">
-    <p class="lead">TELL ME ABOUT YOURSELF?</p>
-    <p>This information will be used by employers looking for candidates</p><br />
+    <p class="lead">ENTER VEHICLE DETAILS</p>
+    <p>This information will be on the final video.</p><br />
     
     <form action="/video" method="post" name="resumeform" id="resumeform">
-        <label>Full Name <span class="req">(will display on your video resume)<span></label>
-        <input type="text" name="fname" value="" />
-        <label>Desired Job Title <span class="req">(will display on your video resume)<span></label>
-        <input type="text" name="title" value="" />
-        <label>Location</label>
-        <input type="text" name="location" id="location" value="" />
-        <label>Training / Education</label>
-        <input type="text" name="edu" value="" />
-        <label>Employer<span>Years of Experience</span></label>
-        <input type="text" name="employer" value="" class="shrt" />
-        <select id="years" name="years">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15+</option>
+        <label>Make</label>
+        <select id="years" name="make" class="full">
+            <option value="BMW">BMW</option>
+            <option value="Harley Davidson">Harley-Davidson</option>
+            <option value="Honda">Honda</option>
+            <option value="Kawasaki">Kawasaki</option>
         </select>
-        <label>Awards</label>
-        <input type="text" name="awards" value="" class="shrt" />
-        <label>Any additional comments</label>
-        <textarea name="comments"></textarea>
+        <label>Model</label>
+        <select id="years" name="model" class="full">
+            <option value="All Models">All Models</option>
+            <option value="Shadow">Shadow</option>
+            <option value="CTX">CTX</option>
+            <option value="Gold Wing">Gold Wing</option>
+            <option value="Fury">Fury</option>
+        </select>
+        <label>Price<span>Year</span></label>
+        <input type="text" name="price" value="" class="shrt" />
+        <select id="years" name="year">
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+        </select>
+        <label>Seller Name</label>
+        <input type="text" name="name" id="location" value="" />
+        <label>Seller Phone</label>
+        <input type="text" name="phone" id="location" value="" class="shrt"  />
     </form>
     <a href="/video" class="strtvid">Start Video</a>
 </div>
