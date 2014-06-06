@@ -4,26 +4,34 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "868aa1ba7e0cfe8821fbe66898ccaa87",
+    "hash": "4c436b6611e0fc3c2abe8ad2ac0bad79",
     "packages": [
         {
             "name": "google/apiclient",
-            "version": "1.0.4-beta",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "eb5934d58761f1a8575e6df6de02fdce89dd89d2"
+                "reference": "3be2abc07f8fe7564f5c447ac9eb0d314148d944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/eb5934d58761f1a8575e6df6de02fdce89dd89d2",
-                "reference": "eb5934d58761f1a8575e6df6de02fdce89dd89d2",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/3be2abc07f8fe7564f5c447ac9eb0d314148d944",
+                "reference": "3be2abc07f8fe7564f5c447ac9eb0d314148d944",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.1"
             },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -41,7 +49,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2014-03-07 17:54:19"
+            "time": "2014-06-06 07:03:09"
         },
         {
             "name": "slim/slim",
@@ -209,7 +217,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "google/apiclient": 10
+        "google/apiclient": 20
     },
     "platform": {
         "php": "~5.4"
