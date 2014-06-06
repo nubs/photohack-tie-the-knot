@@ -156,6 +156,13 @@ function stop() {
 
   var audioPromise = stopRecording();
 
+  video.attr({
+    src: '/loading.webm',
+    autoplay: true,
+    loop: true,
+    controls: false
+  });
+
   audioPromise.done(function(audioBlob) {
     var reader = new FileReader();
     reader.onload = function(event){
