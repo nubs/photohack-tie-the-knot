@@ -170,6 +170,10 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     margin:0 0 20px 0;
     background: rgba(255,255,255,1);
 }
+.vidmsg{
+    margin:30px auto;
+    position:relative;
+}
 .searchresults img{;
     width:140px;
     height:105px;
@@ -197,4 +201,33 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     border-style: solid;
     border-width: 15px 0 15px 30px;
     border-color: transparent transparent transparent #ffffff;
+}
+.well{
+    position:relative;
+}
+.vidprompt{
+    display:none;
+    position:absolute;
+    z-index:90;
+    width:480px;
+    background: rgba(0,0,0,.6);
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+    padding:10px 0;
+    box-sizing:border-box;
+}
+#timer{
+    display:none;
+    position:absolute;
+    right:67px;
+    z-index:100;
+    width:90px;
+    height:45px;
+    background: rgba(0,0,0,.6);
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+    padding:10px 0;
+    box-sizing:border-box;
 }

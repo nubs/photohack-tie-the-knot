@@ -1,4 +1,6 @@
 <?php
+//
+
 return function(\Slim\Slim $app) {
     $app->get('/', function() use($app) {
         $app->render('home.html', ['page' => 'home']);
@@ -8,8 +10,10 @@ return function(\Slim\Slim $app) {
         $app->render('employer.html', ['page' => 'employer','foo'=>'EMPLOYEES']);
     })->name('employer');
 
-    $app->get('/video', function() use($app) {
-        $app->render('video.html', ['page' => 'video']);
+    $app->post('/video', function() use($app) {
+        $name = $app->request->post('fname');
+        $title = $app->request->post('title');
+        $app->render('video.html', ['page' => 'video', 'vidname' => $name, 'vidtitle' => $title]);
     })->name('video');
 
     $app->get('/form', function() use($app) {

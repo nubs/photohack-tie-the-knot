@@ -11,13 +11,19 @@ $(document).ready(function(){
     $('#location').focus(function() {
       $(this).css({"color":"#000","font-style":"normal"});
     }); 
+    
+    $('.strtvid').on('click',function(event){
+        event.preventDefault();
+        $( "#resumeform" ).submit();
+    })
+    
 });
 </script>
 <div class="homemsg">
     <p class="lead">TELL ME ABOUT YOURSELF?</p>
     <p>This information will be used by employers looking for candidates</p><br />
     
-    <form action="/video" method="post" name="resumeform">
+    <form action="/video" method="post" name="resumeform" id="resumeform">
         <label>Full Name <span class="req">(will display on your video resume)<span></label>
         <input type="text" name="fname" value="" />
         <label>Desired Job Title <span class="req">(will display on your video resume)<span></label>

@@ -24,12 +24,19 @@ var endTime = null;
 var frames = [];
 var audioWav;
 var webcamStream;
+var startFade;
+var startTimer;
+var timer;
+
 
 function toggleActivateRecordButton() {
+  
   var b = $('#record-me');
-  b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-record"> Record</span>' : '<span class="glyphicon glyphicon-record"> Recording...</span>');
+  b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-record"> Record</span>' : '<span class="glyphicon glyphicon-record"> Recording</span>');
+
   b.toggleClass('recording');
   b.attr('disabled', !b.attr('disabled'));
+
 }
 
 function turnOnCamera() {
@@ -77,9 +84,14 @@ function turnOnCamera() {
       finishVideoSetup_();
     });
   }
+  
+  
+  
+  
 };
 
 function record() {
+  countdowntimer2();
   turnOnCamera();
 
   frames = []; // clear existing frames;
@@ -91,6 +103,8 @@ function record() {
   rafId = requestAnimationFrame(drawVideoFrame_);
   keepDrawing();
   startRecording();
+  
+   
 };
 
 function drawVideoFrame_(time) {
@@ -98,12 +112,18 @@ function drawVideoFrame_(time) {
   var CANVAS_WIDTH = 480;
   var ctx = canvas[0].getContext('2d');
 
+  var logoImage = new Image(); 
+  logoImage.src = '../img/recruitMe.svg';
+
   ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   ctx.lineWidth=5;
   ctx.fillStyle="#ffffff";
   ctx.lineStyle="#000000";
   ctx.font="24px sans-serif";
-  ctx.fillText("CHECK OUT THIS VIDEO", 20, 200);
+  ctx.fillText($('#prompt_name').val(), 20, 300);
+  ctx.font="18px sans-serif";
+  ctx.fillText($('#prompt_title').val(), 20, 320);
+  ctx.drawImage(logoImage, 295, 5, 180,75); 
 
   document.title = 'Recording...' + Math.round((Date.now() - startTime) / 1000) + 's';
 
@@ -120,6 +140,15 @@ function keepDrawing() {
 }
 
 function stop() {
+  //stop the record animation & prompts
+  clearTimeout(timer);
+  clearInterval(startFade); 
+  clearInterval(startTimer);
+  $('.vidprompt').hide();
+  $('.vidprompt').text('');
+  $('#timer').hide();
+  $('#timer').text('');
+  
   cancelAnimationFrame(rafId);
   clearTimeout(timeoutId);
   endTime = Date.now();
@@ -191,6 +220,61 @@ function initEvents() {
 }
 
 initEvents();
+
+
+function countdowntimer2(){
+    var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','OTHER EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
+    var framepromptstimer = new Array(4,5,10,5,10,10,10);
+    var frametimer;
+    var countdowntimer;
+      
+      
+      //start the record animation
+      startFade = setInterval(function(){
+            $('span.glyphicon-record').fadeOut(800);
+            $('span.glyphicon-record').fadeIn(800);
+        }, 1600
+      );
+
+        $('.vidprompt').show();
+        $('#timer').show();
+        
+        function func() {
+            frametimer = framepromptstimer[0] * 1000; 
+            countdowntimer = framepromptstimer[0];
+            
+            $('.vidprompt').text((frameprompts[0]));
+            
+            //start countdown timer
+            $('#timer').text(countdowntimer);
+            clearInterval(startTimer);
+            startTimer = setInterval(countdown, 1000);
+            
+            
+            
+            frameprompts.shift();
+            framepromptstimer.shift();       
+            
+            if(frameprompts.length > 0) {
+                timer = setTimeout(func, frametimer);
+            }
+            else{
+                setTimeout(function() { 
+                    $('#stop-me').trigger('click');
+                }, frametimer)
+            }
+        }
+        
+        function countdown() {
+            countdowntimer = countdowntimer - 1;
+            $('#timer').text(countdowntimer);
+            if(countdowntimer == 0){
+                clearInterval(startTimer);
+            }
+        }
+        
+        func();
+}
 
 })(window);
 

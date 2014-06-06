@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div class="homemsg" id="resume-record">
+<div class="homemsg vidmsg" id="resume-record">
+  <div class="vidprompt"></div><div id="timer"></div>
+  <input type="hidden" value="{{ vidname }}" id="prompt_name" />
+  <input type="hidden" value="{{ vidtitle }}" id="prompt_title" />
   <video id="webcam" autoplay muted></video>
   <div class="well">
+    
     <div id="instructions">First, allow access to your webcam.</div>
     <hr>
     <div id="video-controls" class="btn-group btn-group-lg btn-group-justified hide">
