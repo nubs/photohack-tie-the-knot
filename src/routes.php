@@ -10,14 +10,10 @@ return function(\Slim\Slim $app) {
     })->name('employer');
 
     $app->post('/video', function() use($app) {
-        $make = $app->request->post('make');
-        $model = $app->request->post('model');
-        $price = $app->request->post('price');
-        $year = $app->request->post('year');
-        $phone = $app->request->post('phone');
-        $name = $app->request->post('name');
-        $app->setCookie('formInfo', json_encode(['vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' => $name . ' ' .  $phone]));
-        $app->render('video.html', ['page' => 'video', 'vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' =>  $name . ' ' . $phone]);
+        $names = $app->request->post('names');
+        $message = $app->request->post('message');
+        $app->setCookie('formInfo', json_encode(['vidname' => $names, 'vidtitle' => $message]));
+        $app->render('video.html', ['page' => 'video', 'vidname' => $names, 'vidtitle' =>  $message]);
     })->name('video');
 
     $app->get('/form', function() use($app) {
