@@ -4,7 +4,7 @@
     display:inline-block;
     width:auto;
     height:30;
-    background:#727272;
+    background:#820808;
     padding:4px 15px;
     box-sizing:border-box;
     color:#fff;
@@ -19,9 +19,9 @@
 }
 .navbar-nav>li.logo{
     display:inline-block;
-    background:transparent url('../img/recruitme-logo.png') 0 0 no-repeat;
-    width:507px;
-    height:87px;
+    background:transparent url('../img/horiz-logo.png') 0 0 no-repeat;
+    width:800px;
+    height:68px;
     margin:10px 100px 0 10px;
 }
 body{
@@ -36,17 +36,17 @@ body{
     min-height:860px;
 }
 .page{
-    background:transparent url('../img/RecruitMe-homepage-background.jpg') 0 0 no-repeat;
+    background:transparent url('../img/1-BMW.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
 .formpage{
-    background:transparent url('../img/RecruitMe-formPage-background.jpg') 0 0 no-repeat;
+    background:transparent url('../img/1-Harley.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
 .sharepage{
-    background:transparent url('../img/RecruitMe-SharePage-background.jpg') 0 0 no-repeat;
+    background:transparent url('../img/1-kawasaki.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -55,7 +55,11 @@ body{
     background-repeat:no-repeat;
     background-size:cover;
 }
-
+.videopage{
+    background:transparent url('../img/1-yamaha.jpg') 0 0 no-repeat;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
 
 .header ul{
     margin:0;
@@ -88,7 +92,7 @@ body{
     box-sizing:border-box;
     padding:20px;
     opacity:.90;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
     font-size:18px;
     min-width:500px;
     box-shadow: 4px 4px 20px #888888;
@@ -106,7 +110,7 @@ p.lead{
 }
 div.homemsg  a, div.homemsg  a:hover{
     display:inline-block;
-    background:#00c50d;
+    background:#820808;
     color:#fff;
     padding:4px 15px;
     text-decoration:none;
@@ -145,6 +149,7 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
 }
 .homemsg form label span{
     float:right;
+    margin:0 240px 0 0;
 }
 .homemsg form label span.req{
     float:none;
@@ -161,7 +166,7 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     height:120px;
 }
 .homemsg form input.shrt{
-    width:50%;
+    width:25%;
     margin-right:60px;
 }
 .homemsg form select{
@@ -169,6 +174,9 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     height:30px;
     margin:0 0 20px 0;
     background: rgba(255,255,255,1);
+}
+.homemsg form select.full{
+    width:90%;
 }
 .vidmsg{
     margin:30px auto;
@@ -241,3 +249,5 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
 .share-disabled {
   opacity: 0.1;
 }
+
+

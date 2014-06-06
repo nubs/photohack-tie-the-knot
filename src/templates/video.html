@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+{% block pagecontainerclass %}videopage{% endblock %}
 {% block content %}
+
+
 <div class="homemsg vidmsg" id="resume-record">
   <div class="vidprompt"></div><div id="timer"></div>
   <input type="hidden" value="{{ vidname }}" id="prompt_name" />

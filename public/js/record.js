@@ -295,8 +295,8 @@ function share() {
 }
 
 function countdowntimer2(){
-    var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
-    var framepromptstimer = new Array(5,5,5,5,5,5,5);
+    var frameprompts = new Array('Start on a side','Walk around Slowly','Zoom In on Engine','Zoom In on Controls','Start it up','Show Special Features ');
+    var framepromptstimer = new Array(5,10,5,5,5,10);
     var frametimer;
     var countdowntimer;
 
