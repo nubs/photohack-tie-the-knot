@@ -208,7 +208,7 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
 }
 .vidprompt{
     display:none;
-    position:absolute;
+    margin: auto;
     z-index:90;
     width:480px;
     background: rgba(0,0,0,.6);
@@ -231,4 +231,8 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     text-align:center;
     padding:10px 0;
     box-sizing:border-box;
+}
+#webcam{
+    display: block;
+    margin: auto;
 }
