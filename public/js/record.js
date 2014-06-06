@@ -30,7 +30,7 @@ var timer;
 
 
 function toggleActivateRecordButton() {
-  
+
   var b = $('#record-me');
   b.html(b.attr('disabled') ? '<span class="glyphicon glyphicon-record"> Record</span>' : '<span class="glyphicon glyphicon-record"> Recording</span>');
 
@@ -84,10 +84,10 @@ function turnOnCamera() {
       finishVideoSetup_();
     });
   }
-  
-  
-  
-  
+
+
+
+
 };
 
 function record() {
@@ -103,8 +103,8 @@ function record() {
   rafId = requestAnimationFrame(drawVideoFrame_);
   keepDrawing();
   startRecording();
-  
-   
+
+
 };
 
 function drawVideoFrame_(time) {
@@ -112,7 +112,7 @@ function drawVideoFrame_(time) {
   var CANVAS_WIDTH = 480;
   var ctx = canvas[0].getContext('2d');
 
-  var logoImage = new Image(); 
+  var logoImage = new Image();
   logoImage.src = '../img/recruitMe.svg';
 
   ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -123,7 +123,7 @@ function drawVideoFrame_(time) {
   ctx.fillText($('#prompt_name').val(), 20, 300);
   ctx.font="18px sans-serif";
   ctx.fillText($('#prompt_title').val(), 20, 320);
-  ctx.drawImage(logoImage, 295, 5, 180,75); 
+  ctx.drawImage(logoImage, 295, 5, 180,75);
 
   document.title = 'Recording...' + Math.round((Date.now() - startTime) / 1000) + 's';
 
@@ -142,13 +142,13 @@ function keepDrawing() {
 function stop() {
   //stop the record animation & prompts
   clearTimeout(timer);
-  clearInterval(startFade); 
+  clearInterval(startFade);
   clearInterval(startTimer);
   $('.vidprompt').hide();
   $('.vidprompt').text('');
   $('#timer').hide();
   $('#timer').text('');
-  
+
   cancelAnimationFrame(rafId);
   clearTimeout(timeoutId);
   endTime = Date.now();
@@ -227,8 +227,8 @@ function countdowntimer2(){
     var framepromptstimer = new Array(4,5,10,5,10,10,10);
     var frametimer;
     var countdowntimer;
-      
-      
+
+
       //start the record animation
       startFade = setInterval(function(){
             $('span.glyphicon-record').fadeOut(800);
@@ -238,33 +238,33 @@ function countdowntimer2(){
 
         $('.vidprompt').show();
         $('#timer').show();
-        
+
         function func() {
-            frametimer = framepromptstimer[0] * 1000; 
+            frametimer = framepromptstimer[0] * 1000;
             countdowntimer = framepromptstimer[0];
-            
+
             $('.vidprompt').text((frameprompts[0]));
-            
+
             //start countdown timer
             $('#timer').text(countdowntimer);
             clearInterval(startTimer);
             startTimer = setInterval(countdown, 1000);
-            
-            
-            
+
+
+
             frameprompts.shift();
-            framepromptstimer.shift();       
-            
+            framepromptstimer.shift();
+
             if(frameprompts.length > 0) {
                 timer = setTimeout(func, frametimer);
             }
             else{
-                setTimeout(function() { 
+                setTimeout(function() {
                     $('#stop-me').trigger('click');
                 }, frametimer)
             }
         }
-        
+
         function countdown() {
             countdowntimer = countdowntimer - 1;
             $('#timer').text(countdowntimer);
@@ -272,7 +272,7 @@ function countdowntimer2(){
                 clearInterval(startTimer);
             }
         }
-        
+
         func();
 }
 
@@ -293,7 +293,7 @@ function countdowntimer2(){
 
   function startUserMedia(stream) {
     var input = audio_context.createMediaStreamSource(stream);
-    
+
     recorder = new Recorder(input, {workerPath: '/js/recorderWorker.js'});
   }
 
@@ -303,7 +303,7 @@ function countdowntimer2(){
 
   function stopRecording() {
     recorder && recorder.stop();
-    
+
     var deferred = $.Deferred();
 
     // create WAV download link using audio data blob
@@ -311,7 +311,7 @@ function countdowntimer2(){
         deferred.resolve(blob);
       }
     );
-    
+
     recorder.clear();
     return deferred.promise();
   }
@@ -322,11 +322,11 @@ function countdowntimer2(){
       window.AudioContext = window.AudioContext || window.webkitAudioContext;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
       window.URL = window.URL || window.webkitURL;
-      
+
       audio_context = new AudioContext;
     } catch (e) {
       alert('No web audio support in this browser!');
     }
-    
+
     startUserMedia(stream);
   };
