@@ -27,7 +27,7 @@
 body{
     background:#dddddd;
 }
-.page,.formpage,.sharepage{
+.page,.formpage,.sharepage,.employerpage{
     text-align:center;
     margin:0 auto;
     height:auto;
@@ -47,6 +47,11 @@ body{
 }
 .sharepage{
     background:transparent url('../img/RecruitMe-SharePage-background.jpg') 0 0 no-repeat;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.employerpage{
+    background:transparent url('../img/RecruitMe-Employer-background.jpg') 0 0 no-repeat;
     background-repeat:no-repeat;
     background-size:cover;
 }
@@ -73,7 +78,7 @@ body{
     position:absolute;
     bottom:0;
 }
-.homemsg{
+.homemsg, .searchresults{
     width:30%;
     height:auto;
     border-radius:10px;
@@ -82,11 +87,17 @@ body{
     margin:50px 0 50px 5%;
     box-sizing:border-box;
     padding:20px;
-    opacity:.80;
+    opacity:.90;
     background: rgba(255,255,255,0.8);
     font-size:18px;
     min-width:500px;
     box-shadow: 4px 4px 20px #888888;
+    overflow:auto;
+}
+.searchresults{
+  width:65%;  
+  margin:50px 0 50px 10%;
+  display:none;
 }
 p.lead{
     color:#696767;
@@ -158,4 +169,65 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     height:30px;
     margin:0 0 20px 0;
     background: rgba(255,255,255,1);
+}
+.vidmsg{
+    margin:30px auto;
+    position:relative;
+}
+.searchresults img{;
+    width:140px;
+    height:105px;
+}
+.empinfo{
+    float:left;
+    margin:0 20px 15px 20px;
+}
+.searchresults > div{
+    clear:both;
+}
+.searchresults a.img{
+    display:inline-block;
+    float:left;
+    margin:0 0 15px 20px;
+    width:140px;
+    height:105px;
+}
+.searchresults  span.playarrow{
+    display:inline-block;
+    position:absolute;
+    margin:65px 0 0 105px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 30px;
+    border-color: transparent transparent transparent #ffffff;
+}
+.well{
+    position:relative;
+}
+.vidprompt{
+    display:none;
+    position:absolute;
+    z-index:90;
+    width:480px;
+    background: rgba(0,0,0,.6);
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+    padding:10px 0;
+    box-sizing:border-box;
+}
+#timer{
+    display:none;
+    position:absolute;
+    right:67px;
+    z-index:100;
+    width:90px;
+    height:45px;
+    background: rgba(0,0,0,.6);
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+    padding:10px 0;
+    box-sizing:border-box;
 }

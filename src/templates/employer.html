@@ -1,7 +1,131 @@
 {% extends "base.html" %}
-{% block title %}Employer{% endblock %}
+{% block title %}Search for Employees{% endblock %}
+{% block pagecontainerclass %}employerpage{% endblock %}
 {% block content %}
+<script>
+$(document).ready(function(){
+    $.get("http://ipinfo.io", function(response) {
+         $('#location').val(response.city).css({"color":"#a2a2a2","font-style":"italic"});
+    }, "jsonp");
+    $('#location').focus(function() {
+      $(this).css({"color":"#000","font-style":"normal"});
+    });
+    
+    //load search results
+    $('.strtvid').on('click',function(event){
+        event.preventDefault();
+        
+        setTimeout(function(){
+            $('.homemsg').hide();
+            $('.searchresults').show();
+        }, 2000);
+    });
+});
+</script>
+
+<div class="searchresults">
+ <p class="lead">MATCHING CANDIDATES</p>
+    <div>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+     </div>   
+         <div>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+     </div>  
+         <div>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+        <a href="" class="img"><span class="playarrow"></span><img src="/img/photo1.jpg" /></a>
+        <span class="empinfo">
+            <span>Jon Doe</span><br />
+            <span>Corn Farmer</span><br />
+            <span>Location: Nebraska</span><br />
+            <span>Experience: 3 Years</span><br />
+        </span>
+     </div>  
+</div>
+
 <div class="homemsg">
-  <p class="lead">Employer Page TODO</p>
+ <p class="lead">SEARCH FOR {{ foo }}</p>
+    <p>Select a search criteria below to start looking for your future employees!</p><br />
+    
+    <form action="/searchresults" method="get" name="searchform">
+        <label>Job Title</label>
+        <input type="text" name="title" value="" />
+        <label>Location</label>
+        <input type="text" name="location" id="location" value="" />
+        <label>Training / Education</label>
+        <input type="text" name="edu" value="" />
+        <label>Years of Experience</label>
+        <select id="years" name="years">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15+</option>
+        </select>
+    </form>
+    <a href="/searchresults" class="strtvid">Search</a>
 </div>
 {% endblock %}
