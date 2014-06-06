@@ -203,15 +203,16 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     border-width: 15px 0 15px 30px;
     border-color: transparent transparent transparent #ffffff;
 }
-.well{
+.well, #resume-record{
     position:relative;
 }
 .vidprompt{
     display:none;
     position:absolute;
-    z-index:100;
-    width:500px;
-    left:0p;
+    z-index:90;
+    top:20px;
+    left:43px;
+    width:480px;
     height:45px;
     background: rgba(0,0,0,.6);
     color:#fff;
