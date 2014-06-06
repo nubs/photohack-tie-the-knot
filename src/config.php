@@ -3,7 +3,7 @@ use TOL\PhotoHack\Youtube;
 
 function hostName()
 {
-    $protocol = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+    $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
     $serverName = $_SERVER['SERVER_NAME'];
     return $protocol . $serverName;
 }
