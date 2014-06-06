@@ -22,7 +22,7 @@ class Youtube
         $youtube = new Google_Service_YouTube($this->_client);
 
         if (!$this->_client->getAccessToken()) {
-            return false;
+            return 'Uh, no token';
         }
 
         // Associate the snippet and status objects with a new video resource.
@@ -30,9 +30,9 @@ class Youtube
         $video->setSnippet($this->_buildSnippet($title, $description, $tags));
         $video->setStatus($this->_buildStatus());
 
-        $status = $this->_uploadVideo($client, $youtube, $video, $path);
+        $status = $this->_uploadVideo($this->_client, $youtube, $video, $path);
 
-        return $status['id'];
+        return $status;
     }
 
     protected function _uploadVideo(Google_Client $client, Google_Service_YouTube $youtube, Google_Service_YouTube_Video $video, $path)
@@ -55,7 +55,7 @@ class Youtube
 
         $client->setDefer(false);
 
-        return $status;
+        return $status['id'];
     }
 
     protected function _buildSnippet($title, $description, array $tags)

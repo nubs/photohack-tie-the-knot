@@ -236,3 +236,6 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
     display: block;
     margin: auto;
 }
+.share-disabled {
+  opacity: 0.1;
+}

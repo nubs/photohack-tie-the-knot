@@ -27,6 +27,7 @@ var webcamStream;
 var startFade;
 var startTimer;
 var timer;
+var videoId;
 
 function toggleActivateRecordButton() {
 
@@ -164,7 +165,8 @@ function stop() {
           audio: event.target.result,
           video: frames
         }), function(data){
-          var blob = b64toBlob(data);
+          videoId = data.id;
+          var blob = b64toBlob(data.video);
           var url = window.URL.createObjectURL(blob);
           video.attr('src', url);
           video.attr({
@@ -176,7 +178,7 @@ function stop() {
               video[0].volume = 1;
           }
           embedVideoPreview();
-        }, 'text');
+        }, 'json');
     };
 
     reader.readAsDataURL(audioBlob);//Convert the blob from clipboard to base64
@@ -245,14 +247,53 @@ function initEvents() {
   if (stopButton.length) {
     stopButton.click(stop);
   }
+
+  $('#youtube').click(function(){
+      var matches = window.location.href.match('videoId=([^&]*)');
+      if (matches && matches[1]) {
+          videoId = matches[1];
+      }
+
+      if (document.cookie.search(' token=[^;]') == -1) {
+          document.cookie = 'videoId=' + videoId;
+          window.location='/getYoutubeAuthUrl?videoId=' + videoId;
+          return;
+      }
+
+      postYouTubeVideo();
+  });
+
+  var matches = window.location.href.match('code=([^&]*)');
+  if (matches && matches[1]) {
+      postYouTubeVideo();
+  }
+}
+
+function postYouTubeVideo() {
+  var matches = window.location.href.match('videoId=([^&]*)');
+  if (matches && matches[1]) {
+      videoId = matches[1];
+  } else {
+      var matches = document.cookie.match('videoId=([^;]*)');
+      if (matches && matches[1]) {
+          videoId = matches[1];
+      }
+  }
+
+  $('#youtubeLink').html('Please be patient while we upload your video to Youtube.');
+  $.post('/youtube', {
+    id: videoId
+  }, function(data){
+    youtubeUrl = data.youtubeUrl;
+    $('.share-disabled').removeClass('share-disabled');
+    $('#youtubeLink').html('<a href="' + data.youtubeUrl + '" target="_blank">View your video</a>');
+  }, 'json');
 }
 
 initEvents();
 
 function share() {
-  $('.page').attr('class', 'sharepage');
-  $('#resume-record').attr('class', 'homemsg');
-  $('#resume-record').html('<p class="lead">THE JOB IS ALMOST YOURS</p><p>You have created your video, now you just need to share. Where would you like to share it?</p><br /><p>Share:</p><br /><a href="/youtube" class="share youtube"></a><a href="/linked" class="share linked"></a><a href="/facebook" class="share facebook"></a><a href="/gplus" class="share gplus"></a>');
+  window.location = "/share?videoId=" + videoId;
 }
 
 function countdowntimer2(){
