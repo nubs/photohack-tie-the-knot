@@ -1,4 +1,6 @@
 (function(exports) {
+var logoImage = new Image();
+logoImage.src = '../img/recruitMe.svg';
 
 exports.URL = exports.URL || exports.webkitURL;
 
@@ -107,9 +109,6 @@ function drawVideoFrame_() {
   var CANVAS_HEIGHT = 360;
   var CANVAS_WIDTH = 480;
   var ctx = canvas[0].getContext('2d');
-
-  var logoImage = new Image();
-  logoImage.src = '../img/recruitMe.svg';
 
   ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   ctx.drawImage(logoImage, 295, 5, 180,75);
