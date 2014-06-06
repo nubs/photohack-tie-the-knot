@@ -36,6 +36,8 @@ function toggleActivateRecordButton() {
   b.toggleClass('recording');
   b.attr('disabled', !b.attr('disabled'));
 
+  $('#stop-me').html('<span class="glyphicon glyphicon-stop"></span> Stop');
+  $('#stop-me').click(stop);
 }
 
 function turnOnCamera() {
@@ -222,6 +224,14 @@ function embedVideoPreview(opt_url) {
     title: 'Download your video'
   });
   downloadLink.text('[ download video ]');
+
+  $('#instructions').text('Congratulations on recording your video resume! If you aren\'t completely happy with it, feel free to record again, otherwise hit continue to share your video.');
+  $('#record-me').html('<span class="glyphicon glyphicon-record"></span> Try Again');
+  $('#record-me').attr('disabled', false);
+  $('#stop-me').html('<span class="glyphicon glyphicon-ok"></span> Continue');
+  $('#stop-me').attr('disabled', false);
+  $('#stop-me').unbind('click');
+  $('#stop-me').click(share);
 }
 
 function initEvents() {
@@ -238,6 +248,12 @@ function initEvents() {
 }
 
 initEvents();
+
+function share() {
+  $('.page').attr('class', 'sharepage');
+  $('#resume-record').attr('class', 'homemsg');
+  $('#resume-record').html('<p class="lead">THE JOB IS ALMOST YOURS</p><p>You have created your video, now you just need to share. Where would you like to share it?</p><br /><p>Share:</p><br /><a href="/youtube" class="share youtube"></a><a href="/linked" class="share linked"></a><a href="/facebook" class="share facebook"></a><a href="/gplus" class="share gplus"></a>');
+}
 
 function countdowntimer2(){
     var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','OTHER EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
