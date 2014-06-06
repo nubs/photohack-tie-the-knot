@@ -181,6 +181,7 @@ div.homemsg  a.gplus, div.gplus  a.linked:hover{
 .empinfo{
     float:left;
     margin:0 20px 15px 20px;
+    width: 190px;
 }
 .searchresults > div{
     clear:both;
