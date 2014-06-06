@@ -38,6 +38,7 @@ function toggleActivateRecordButton() {
   b.attr('disabled', !b.attr('disabled'));
 
   $('#stop-me').html('<span class="glyphicon glyphicon-stop"></span> Stop');
+  $('#stop-me').unbind('click');
   $('#stop-me').click(stop);
 }
 
