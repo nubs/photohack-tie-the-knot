@@ -10,14 +10,10 @@ return function(\Slim\Slim $app) {
     })->name('employer');
 
     $app->post('/video', function() use($app) {
-        $make = $app->request->post('make');
-        $model = $app->request->post('model');
-        $price = $app->request->post('price');
-        $year = $app->request->post('year');
-        $phone = $app->request->post('phone');
-        $name = $app->request->post('name');
-        $app->setCookie('formInfo', json_encode(['vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' => $name . ' ' .  $phone]));
-        $app->render('video.html', ['page' => 'video', 'vidname' => $year . ' ' . $make . ' ' . $model . ' ' . $price, 'vidtitle' =>  $name . ' ' . $phone]);
+        $names = $app->request->post('names');
+        $message = $app->request->post('message');
+        $app->setCookie('formInfo', json_encode(['vidname' => $names, 'vidtitle' => $message]));
+        $app->render('video.html', ['page' => 'video', 'vidname' => $names, 'vidtitle' =>  $message]);
     })->name('video');
 
     $app->get('/form', function() use($app) {
@@ -61,11 +57,9 @@ return function(\Slim\Slim $app) {
         $formInfo = json_decode($app->getCookie('formInfo'), true);
         $videoId = $youtube->uploadVideo(
             "/tmp/{$app->request->post('id')}/output.webm", 
-            "{$formInfo['vidname']}'s Resume",
-            "In this video we see {$formInfo['vidname']} explain why he is obviously the best candidate for ".
-                "{$formInfo['vidtitle']}.  When you are finished watching this video I think you will agree that you would" . 
-                " have to be a complete fool not to hire him on the spot.",
-             ['resume', 'photoHack', 'Dominion Enterprises', 'Hackathon', 'Postage Stamp Moisturizer']
+            "{$formInfo['vidname']}'s Guestbook Entry",
+            "Greetings from {$formInfo['vidname']}.",
+             ['guestbook', 'photoHack', 'Dominion Enterprises', 'Hackathon', 'Postage Stamp Moisturizer']
         );
 
         $app->response->setBody(json_encode(['youtubeUrl' => "https://www.youtube.com/watch?v={$videoId}"]));
