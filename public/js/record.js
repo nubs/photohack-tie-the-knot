@@ -234,7 +234,7 @@ function embedVideoPreview(opt_url) {
   });
   downloadLink.text('[ download video ]');
 
-  $('#instructions').text('Congratulations on recording your video resume! If you aren\'t completely happy with it, feel free to record again, otherwise hit continue to share your video.');
+  $('#instructions').text('Congratulations on recording your message for the bride and groom! If you aren\'t completely happy with it, feel free to record again, otherwise hit continue to share your video.');
   $('#record-me').html('<span class="glyphicon glyphicon-record"></span> Try Again');
   $('#record-me').attr('disabled', false);
   $('#stop-me').html('<span class="glyphicon glyphicon-ok"></span> Continue');
@@ -304,8 +304,8 @@ function share() {
 }
 
 function countdowntimer2(){
-    var frameprompts = new Array('Start on a side','Walk around Slowly','Zoom In on Engine','Zoom In on Controls','Start it up','Show Special Features ');
-    var framepromptstimer = new Array(5,10,5,5,5,10);
+    var frameprompts = new Array('Share a thought with the bride & groom','');
+    var framepromptstimer = new Array(20,10);
     var frametimer;
     var countdowntimer;
 
