@@ -296,8 +296,8 @@ function share() {
 }
 
 function countdowntimer2(){
-    var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','OTHER EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
-    var framepromptstimer = new Array(4,5,10,5,10,10,10);
+    var frameprompts = new Array('INTRODUCE YOURSELF','WHAT DO YOU WANT TO DO?','YOUR EDUCATION OR TRAINING','YOUR CURRENT JOB TITLE','EXPERIENCE, AWARDS, ACCOLADES','ANYTHING ELSE?','SAY THANK YOU');
+    var framepromptstimer = new Array(5,5,5,5,5,5,5);
     var frametimer;
     var countdowntimer;
 
