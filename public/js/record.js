@@ -220,49 +220,49 @@ function countdowntimer2(){
     var frametimer;
     var countdowntimer;
 
-      //start the record animation
-      startFade = setInterval(function(){
-            $('span.glyphicon-record').fadeOut(800);
-            $('span.glyphicon-record').fadeIn(800);
-        }, 1600
-      );
+    //start the record animation
+    startFade = setInterval(function(){
+          $('span.glyphicon-record').fadeOut(800);
+          $('span.glyphicon-record').fadeIn(800);
+      }, 1600
+    );
 
-        $('.vidprompt').show();
-        $('#timer').show();
+      $('.vidprompt').show();
+      $('#timer').show();
 
-        function func() {
-            frametimer = framepromptstimer[0] * 1000;
-            countdowntimer = framepromptstimer[0];
+      function func() {
+          frametimer = framepromptstimer[0] * 1000;
+          countdowntimer = framepromptstimer[0];
 
-            $('.vidprompt').text((frameprompts[0]));
+          $('.vidprompt').text((frameprompts[0]));
 
-            //start countdown timer
-            $('#timer').text(countdowntimer);
-            clearInterval(startTimer);
-            startTimer = setInterval(countdown, 1000);
+          //start countdown timer
+          $('#timer').text(countdowntimer);
+          clearInterval(startTimer);
+          startTimer = setInterval(countdown, 1000);
 
-            frameprompts.shift();
-            framepromptstimer.shift();
+          frameprompts.shift();
+          framepromptstimer.shift();
 
-            if(frameprompts.length > 0) {
-                timer = setTimeout(func, frametimer);
-            }
-            else{
-                setTimeout(function() {
-                    $('#stop-me').trigger('click');
-                }, frametimer)
-            }
-        }
+          if(frameprompts.length > 0) {
+              timer = setTimeout(func, frametimer);
+          }
+          else{
+              setTimeout(function() {
+                  $('#stop-me').trigger('click');
+              }, frametimer)
+          }
+      }
 
-        function countdown() {
-            countdowntimer = countdowntimer - 1;
-            $('#timer').text(countdowntimer);
-            if(countdowntimer == 0){
-                clearInterval(startTimer);
-            }
-        }
+      function countdown() {
+          countdowntimer = countdowntimer - 1;
+          $('#timer').text(countdowntimer);
+          if(countdowntimer == 0){
+              clearInterval(startTimer);
+          }
+      }
 
-        func();
+      func();
 }
 
 })(window);
