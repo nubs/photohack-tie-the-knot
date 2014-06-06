@@ -109,6 +109,7 @@ function drawVideoFrame_(time) {
   logoImage.src = '../img/recruitMe.svg';
 
   ctx.drawImage(video[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  ctx.drawImage(logoImage, 295, 5, 180,75);
   ctx.lineWidth=5;
   ctx.fillStyle="#ffffff";
   ctx.lineStyle="#000000";
@@ -116,7 +117,6 @@ function drawVideoFrame_(time) {
   ctx.fillText($('#prompt_name').val(), 20, 300);
   ctx.font="18px sans-serif";
   ctx.fillText($('#prompt_title').val(), 20, 320);
-  ctx.drawImage(logoImage, 295, 5, 180,75);
 
   document.title = 'Recording...' + Math.round((Date.now() - startTime) / 1000) + 's';
 
@@ -246,10 +246,11 @@ function countdowntimer2(){
 
           if(frameprompts.length > 0) {
               timer = setTimeout(func, frametimer);
-          }
-          else{
+          } else {
               setTimeout(function() {
-                  $('#stop-me').trigger('click');
+                  if ($('#record-me').attr('disabled')) {
+                      stop();
+                  }
               }, frametimer)
           }
       }
