@@ -176,6 +176,7 @@ function stop() {
           video.attr('src', url);
           video.attr({
             autoplay: true,
+            loop: false,
             controls: true
           });
           video[0].onloadeddata = function() {
