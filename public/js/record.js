@@ -162,7 +162,9 @@ function stop() {
           audio: event.target.result,
           video: frames
         }), function(data){
-          video.attr('src', 'data:video/webm;base64,' + data);
+          var blob = b64toBlob(data);
+          var url = window.URL.createObjectURL(blob);
+          video.attr('src', url);
           video.attr({
             autoplay: true,
             controls: true
@@ -178,6 +180,29 @@ function stop() {
     reader.readAsDataURL(audioBlob);//Convert the blob from clipboard to base64
   });
 };
+
+function b64toBlob(b64Data) {
+    var sliceSize = 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays);
+    return blob;
+}
 
 function embedVideoPreview(opt_url) {
   var url = opt_url || null;
