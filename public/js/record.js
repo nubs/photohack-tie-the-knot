@@ -17,7 +17,6 @@ navigator.getUserMedia = navigator.getUserMedia ||
 var ORIGINAL_DOC_TITLE = document.title;
 var video = $('video#webcam');
 var canvas = $('<canvas></canvas>'); // offscreen canvas.
-var rafId = null;
 var timeoutId = null;
 var startTime = null;
 var endTime = null;
@@ -99,12 +98,12 @@ function record() {
   toggleActivateRecordButton();
   $('#stop-me').attr('disabled', false);
 
-  rafId = requestAnimationFrame(drawVideoFrame_);
+  drawVideoFrame_();
   keepDrawing();
   startRecording();
 };
 
-function drawVideoFrame_(time) {
+function drawVideoFrame_() {
   var CANVAS_HEIGHT = 360;
   var CANVAS_WIDTH = 480;
   var ctx = canvas[0].getContext('2d');
@@ -131,9 +130,9 @@ function drawVideoFrame_(time) {
 function keepDrawing() {
   var FRAME_RATE = 25;
   timeoutId = setTimeout(function () {
-      rafId = requestAnimationFrame(drawVideoFrame_);
       keepDrawing();
-  }, 1000 / FRAME_RATE);
+      drawVideoFrame_();
+  }, ((frames.length + 1) * (1000 / FRAME_RATE)) - (Date.now() - startTime));
 }
 
 function stop() {
@@ -146,7 +145,6 @@ function stop() {
   $('#timer').hide();
   $('#timer').text('');
 
-  cancelAnimationFrame(rafId);
   clearTimeout(timeoutId);
   endTime = Date.now();
   $('#stop-me').attr('disabled', true);
